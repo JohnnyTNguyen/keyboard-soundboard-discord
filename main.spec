@@ -5,14 +5,13 @@ block_cipher = None
 
 added_binaries=[
          ( 'libopus.dll', '.' ),
-         ( 'ffmpeg.exe', '.' )
          ]
 
 a = Analysis(['main.py'],
              pathex=[],
              binaries=added_binaries,
-             datas=[],
-             hiddenimports=['_cffi_backend'],
+             datas=[('ffmpeg.exe', '.')],
+             hiddenimports=['_cffi_backend','configparser'],
              hookspath=[],
              hooksconfig={},
              runtime_hooks=[],
