@@ -110,9 +110,15 @@ async def rando(ctx):
 def on_press(key):
     try:
         # print(key)
-        print('sounds/' + config_file['KEYMAPPINGS'][str(key)])
-        sound_path = os.path.abspath('sounds/' + config_file['KEYMAPPINGS'][str(key)])
-        asyncio.run(play(sound_path))
+        if(key == key.f24):
+            random_file = random.choice(os.listdir('sounds/'))
+            print('sounds/' + random_file)
+            sound_path = os.path.abspath('sounds/' + random_file)
+            asyncio.run(play(sound_path))
+        else:
+            print('sounds/' + config_file['KEYMAPPINGS'][str(key)])
+            sound_path = os.path.abspath('sounds/' + config_file['KEYMAPPINGS'][str(key)])
+            asyncio.run(play(sound_path))
     except:
         # logging.exception("message")
         # print('No key or file found.')
