@@ -1,5 +1,5 @@
 
-import os, sys, discord
+import os, sys, discord, random
 import logging
 import configparser
 import asyncio
@@ -88,9 +88,24 @@ async def play(file_name):
         vc.play(discord.FFmpegPCMAudio(executable=ffmpeg_path, source=file_name))
 
 @bot.command()
-async def disconnect():
+async def disconnect(ctx):
     if vc.is_connected():
-        vc.disconnect()
+        await vc.disconnect()
+
+@bot.command()
+async def rando(ctx):
+    # pick a random number
+    # pick a random file from a directory
+    try:
+        # print(key)
+        random_file = random.choice(os.listdir('sounds/'))
+        print('sounds/' + random_file)
+        sound_path = os.path.abspath('sounds/' + random_file)
+        asyncio.run(await play(sound_path))
+    except:
+        # logging.exception("message")
+        # print('No key or file found.')
+        pass
 
 def on_press(key):
     try:
