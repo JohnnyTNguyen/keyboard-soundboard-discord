@@ -24,13 +24,13 @@ config_file.read(settings_path)
 if config_file.has_section("KEYMAPPINGS"):
     print("Config read successfully.")
 
-print("Discord - Load Opus:")
-print(os.path.abspath("libopus.dll"))
+# print("Discord - Load Opus:")
+# print(os.path.abspath("libopus.dll"))
 b = discord.opus.load_opus(os.path.abspath("libopus.dll"))
-print(b)
-print("Discord - Is loaded:")
+# print(b)
+# print("Discord - Is loaded:")
 c = discord.opus.is_loaded()
-print(c)
+# print(c)
 
 if not discord.opus.is_loaded():
     raise RunTimeError('Opus failed to load')
@@ -94,13 +94,14 @@ async def disconnect():
 
 def on_press(key):
     try:
-        print(key)
+        # print(key)
         print('sounds/' + config_file['KEYMAPPINGS'][str(key)])
         sound_path = os.path.abspath('sounds/' + config_file['KEYMAPPINGS'][str(key)])
         asyncio.run(play(sound_path))
     except:
-        logging.exception("message")
-        print('No key or file found.')
+        # logging.exception("message")
+        # print('No key or file found.')
+        pass
 
 listener = keyboard.Listener(
     on_press=on_press)
