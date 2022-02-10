@@ -9,7 +9,11 @@ from dotenv import load_dotenv
 
 ffmpeg_path = os.path.abspath("ffmpeg.exe")
 settings_path = os.path.abspath("settings.ini")
- 
+discord_token_path = os.path.abspath("discordToken")
+
+with open(discord_token_path, 'r') as f:
+    discord_token = f.read()
+
 config_file = configparser.ConfigParser()
 config_file.sections()
 
@@ -32,7 +36,7 @@ if not discord.opus.is_loaded():
     raise RunTimeError('Opus failed to load')
 
 load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+# TOKEN = os.getenv('DISCORD_TOKEN')
 
 bot = commands.Bot(command_prefix='$')
 vc = None
@@ -102,4 +106,5 @@ listener = keyboard.Listener(
     on_press=on_press)
 listener.start()
 
-bot.run(TOKEN)
+# print("disc token: " + discord_token)
+bot.run(discord_token)
